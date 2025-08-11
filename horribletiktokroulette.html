@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horrible TikTok Roulette</title>
+    <meta name="description" content="why are you checking this">
+</head>
+<body>
+    <input type="button" value="roll" onclick="roll()">
+    <video style="visibility: hidden;" id="video">
+    </video>
+    <p id="textboxx"></p>
+    <script>
+
+        var vids = ["vid1.mp4", "vid2.mp4", "vid3.mp4", "vid4.mp4", "vid5.mp4", "vid6.mp4"];
+        var video = document.getElementById("video");
+        var isrolled = localStorage.getItem("isrolld");
+        var text = document.getElementById("textboxx");
+
+        function roll() {
+            if(isrolled!="true"){
+            var rolled = Math.floor(Math.random() * 6);
+            var source = document.createElement("source");
+            video.style.visibility = "visible";
+            source.setAttribute('src', vids[rolled]);
+            source.setAttribute('type', 'video/mp4');
+            video.appendChild(source);
+            video.play();
+            isrolled = true;
+            localStorage.setItem("isrolld", "true")
+            } else {
+                text.innerHTML = "you already rolled buddy";
+            }
+        }
+
+    </script>
+</body>
+</html>
+ 
